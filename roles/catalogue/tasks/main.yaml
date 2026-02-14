@@ -14,10 +14,9 @@
     tasks_from: systemd-setup.yaml
 
 - name: copy mongo repo
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
-    remote_src: yes
 
 - name: install mongodb client
   ansible.builtin.dnf:
