@@ -18,16 +18,16 @@
 
   - name: delete zip file
     ansible.builtin.file:
-      path: /tmp/{{ component }}.zip
+      path: /tmp/{{ ansible_role_name }}.zip
       state: absent
 
-  - name: Download {{ component }} code
+  - name: Download {{ ansible_role_name }} code
     ansible.builtin.get_url:
-      url: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v3.zip
-      dest: /tmp/{{ component }}.zip
+      url: https://roboshop-artifacts.s3.amazonaws.com/{{ ansible_role_name }}-v3.zip
+      dest: /tmp/{{ ansible_role_name }}.zip
 
   - name: Unarchive 
     ansible.builtin.unarchive:
-      src: /tmp/{{ component }}.zip
+      src: /tmp/{{ ansible_role_name }}.zip
       dest: /app
       remote_src: yes
