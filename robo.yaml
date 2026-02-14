@@ -15,15 +15,20 @@
   - name: "Deploy DataBase db-components"
     include_role:
       name: "{{ item }}"
+    vars:
+      actual_component: "{{ item }}"  # Pass the real app name here
     loop: "{{ db_components }}"
     when: 
     - (item == component or component == "all")
-    - (inventory_hostname in groups[item] | default([]))
+    - (inventory_hostname in groups[item])
   
   - name: "Deploy Application Components"
     include_role:
       name: "{{ item }}"
+    vars:
+      actual_component: "{{ item }}"  # Pass the real app name here
     loop: "{{ app_components }}"
     when: 
       - (item == component or component == "all")
-      - (inventory_hostname in groups[item] | default([]))
+      - (inventory_hostname in groups[item])
+

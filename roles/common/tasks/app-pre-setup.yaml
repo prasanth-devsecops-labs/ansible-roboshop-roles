@@ -25,9 +25,14 @@
     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/{{ ansible_role_name }}-v3.zip
       dest: /tmp/{{ ansible_role_name }}.zip
+  
+  - name: Download {{ actual_component | default(component) }} code
+    ansible.builtin.get_url:
+      url: "https://roboshop-artifacts.s3.amazonaws.com{{ actual_component | default(component) }}-v3.zip"
+      dest: "/tmp/{{ actual_component | default(component) }}.zip"
 
   - name: Unarchive 
     ansible.builtin.unarchive:
-      src: /tmp/{{ ansible_role_name }}.zip
+      src: /tmp/{{ actual_component | default(component) }}.zip
       dest: /app
       remote_src: yes
