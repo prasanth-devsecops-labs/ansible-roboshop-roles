@@ -8,14 +8,14 @@
   hosts: all
   become: yes
   vars:
-    db-components: [mongodb, redis, mysql, rabbitmq]
-    app-components: [catalogue, user, cart, shipping, pyament, frontend]
+    db_components: [mongodb, redis, mysql, rabbitmq]
+    app_components: [catalogue, user, cart, shipping, pyament, frontend]
   
   tasks:
-  - name: Deploy DataBase db-components
+  - name: "Deploy DataBase db-components"
     include_role:
       name: "{{ item }}"
-    loop: "{{ db-components }}"
+    loop: "{{ db_components }}"
     when: 
     - (item == component or component == "all")
     - (inventory_hostname in groups[item] | default([]))
