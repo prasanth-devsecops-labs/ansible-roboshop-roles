@@ -1,34 +1,7 @@
-# - name: "configure {{ component }} server"
-#   hosts: "{{ component }}"
-#   become: yes
-#   roles:
-#   - "{{ component }}"
-
-- name: configure roboshop Project
-  hosts: all
+- name: "configure {{ component }} server"
+  hosts: "{{ component }}"
   become: yes
-  vars:
-    db_components: [mongodb, redis, mysql, rabbitmq]
-    app_components: [catalogue, user, cart, shipping, pyament, frontend]
-  
-  tasks:
-  - name: "Deploy DataBase db-components"
-    include_role:
-      name: "{{ item }}"
-    vars:
-      actual_component: "{{ item }}"  # Pass the real app name here
-    loop: "{{ db_components }}"
-    when: 
-    - (item == component or component == "all")
-    - (inventory_hostname in groups[item])
-  
-  - name: "Deploy Application Components"
-    include_role:
-      name: "{{ item }}"
-    vars:
-      actual_component: "{{ item }}"  # Pass the real app name here
-    loop: "{{ app_components }}"
-    when: 
-      - (item == component or component == "all")
-      - (inventory_hostname in groups[item])
+  roles:
+  - "{{ component }}"
+
 
