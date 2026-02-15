@@ -18,9 +18,9 @@ Configure AWS CLI:
 
 Ensure the instance has the necessary IAM permissions or configure your credentials manually:
 
-aws configure
+### aws configure
 
-# Provide Access Key, Secret Key, and Default Region (e.g., us-east-1)
+Provide Access Key, Secret Key, and Default Region (e.g., us-east-1)
 
 Use code with caution.
 
