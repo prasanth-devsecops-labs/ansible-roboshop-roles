@@ -30,19 +30,23 @@ I have implemented a Makefile to simplify complex commands into single-word oper
 
 ### 🏗️ Infrastructure Lifecycle
 
-Command	                                    Action
+Command: make infra
 
-make infra	                    Provisions all EC2 instances and creates Route53 DNS records.
+Action: Provisions all EC2 instances and creates Route53 DNS records.
 
-make destroy	                Terminates all project instances and deletes associated DNS records.
+Command: make destroy
+
+Action: Terminates all project instances and deletes associated DNS records.
 
 ### ⚙️ Configuration Management
 
-Command	                                    Action
+Command: make all
 
-make all	                    Configures the entire RoboShop stack (DBs first, then Apps).
+Action: Configures the entire RoboShop stack (DBs first, then Apps).
 
-make <component>	            Configures a specific service (e.g., make shipping or make mysql).
+Command: make <component>
+
+Action: Configures a specific service (e.g., make shipping or make mysql).
 
 ### 3. Operational Notes
 
