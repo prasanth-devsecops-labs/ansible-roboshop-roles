@@ -55,5 +55,5 @@ Management Node Persistence: The make destroy command targets only the RoboShop 
 ### Cost Optimization:
 
 If you are done for the day but want to keep your setup, Stop the Management Node.
+
 If you want to save maximum costs, Terminate the Management Node (requires re-running Step 1 next time).
-Security: Ensure your Management Node's SSH key is available to Ansible so it can connect to the dynamically created project servers.
