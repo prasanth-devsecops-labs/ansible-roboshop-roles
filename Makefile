@@ -38,3 +38,6 @@ pull:
 
 $(COMPONENTS): pull
 	ansible-playbook -e component=$@ robo.yaml
+
+check:
+	ansible-playbook health-check.yaml
