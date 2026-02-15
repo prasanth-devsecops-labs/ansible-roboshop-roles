@@ -5,7 +5,7 @@
     
     # DBs only need Port Checks
     databases:
-      mongodb: 27017
+      mongodb: 27018
       redis: 6379
       mysql: 3306
       rabbitmq: 5672
@@ -33,7 +33,7 @@
         url: "http://{{ item.key }}-dev.{{ base_domain }}:{{ item.value }}{{ '/health' if item.key != 'frontend' else '' }}"
         status_code: 200
       register: result
-      until: result.status == 200
+      until: result.status == 400
       retries: 12
       delay: 5
       loop: "{{ apps | dict2items }}"
