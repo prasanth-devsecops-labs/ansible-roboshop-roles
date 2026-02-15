@@ -24,10 +24,10 @@ INSTANCES  = '{"instances":["mongodb","catalogue","redis","user","cart","mysql",
 .PHONY: all pull infra destroy $(COMPONENTS)
 
 # 3. Infrastructure Commands
-infra:
+infra: pull
 	ansible-playbook -i localhost, -e $(INSTANCES) aws-infra.yaml
 
-destroy:
+destroy: pull
 	ansible-playbook -i localhost, -e $(INSTANCES) -e actions=destroy aws-infra.yaml
 
 # 4. Component Deployment
