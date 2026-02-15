@@ -15,19 +15,26 @@
 # 	make component=payment
 # 	make component=frontend
 
-# 1. Define your components as a list
+
+# 1. Variables
 COMPONENTS = mongodb redis mysql rabbitmq catalogue user cart shipping payment frontend
+INSTANCES  = '{"instances":["mongodb","catalogue","redis","user","cart","mysql","shipping","rabbitmq","payment","frontend"]}'
 
-# 2. Tell Make these are not actual files
-.PHONY: all pull $(COMPONENTS)
+# 2. Phony Targets (Always add new command names here)
+.PHONY: all pull infra destroy $(COMPONENTS)
 
-# 3. Default: Runs everything
+# 3. Infrastructure Commands
+infra:
+	ansible-playbook -i localhost, -e $(INSTANCES) aws-infra.yaml
+
+destroy:
+	ansible-playbook -i localhost, -e $(INSTANCES) -e actions=destroy aws-infra.yaml
+
+# 4. Component Deployment
 all: pull $(COMPONENTS)
 
-# 4. Pull logic
 pull:
 	git pull
 
-# 5. SIMPLER LIST: This one rule handles every component in the list
 $(COMPONENTS): pull
 	ansible-playbook -e component=$@ robo.yaml
